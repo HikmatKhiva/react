@@ -18,7 +18,7 @@ o'rnatish bo'yicha video qo'lnama [havola](https://www.youtube.com/watch?v=dlNT6
 
 
 ### CMD bilan ishlash uchun muhim buyruqlar.
-`ls
+`dir
 ` bu orqali siz qayerda turganingni aniqlab olishingiz mumkin.
 
 `cd /manzil
