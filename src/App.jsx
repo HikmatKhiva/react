@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { useState } from "react";
+import "./App.css";
+import ExampleFunctionComponent from "./example/ExampleFunctionComponent";
+import ExampleState from "./example/ExampleState";
+import ExampleProps from "./example/ExampleProps";
+import ExampleConditionalRendering from "./example/ExampleConditionalRendering";
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [tabs, setTabs] = useState("example");
+  const [text, setText] = useState("");
+  const Show = {
+    example: <ExampleFunctionComponent />,
+    state: <ExampleState />,
+    props: <ExampleProps text={text} />,
+    rendering: <ExampleConditionalRendering />,
+  };
+  const handleTab = (tab = "example") => {
+    setTabs(tab);
+  };
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="tabs">
+        <button className={`${tabs === "example" ? "active" : ""}`} onClick={() => handleTab("example")}>Function Component</button>
+        <button className={`${tabs === "props" ? "active" : ""}`}  onClick={() => handleTab("props")}>Props</button>
+        <button className={`${tabs === "state" ? "active" : ""}`}  onClick={() => handleTab("state")}>State</button>
+        <button className={`${tabs === "rendering" ? "active" : ""}`}  onClick={() => handleTab("rendering")}>Conditional Rendering</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {tabs === "props" && (
+        <input
+          style={{ marginTop: "20px",padding:"8px",borderRadius:"8px",outline:"none",border:"1px solid #ccc" }}
+          onChange={(e) => setText(e.target.value)}
+        />
+      )}
+      <div>{Show[tabs]}</div>
     </>
-  )
+  );
 }
-
-export default App
+export default App;
