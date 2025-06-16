@@ -47,3 +47,21 @@
   flex-wrap: wrap;
   gap: 10px;
 }
+.list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap:30px 10px;
+  list-style: none;
+}
+.list-item {
+  border-radius: 8px;
+  width: 280px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.list-item:hover {
+  border-color: rgb(0, 140, 255);
+  cursor: pointer;
+}
