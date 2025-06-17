@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { useState } from "react";
+import "./App.css";
+import Button from "./ui/Button";
+import ExampleRef from "./example/ExampleRef";
+import ExampleHOC from "./example/ExampleHOC";
+import ExampleEvents from "./example/ExampleEvents";
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [tabs, setTabs] = useState("example");
+  const Show = {
+    ref: <ExampleRef />,
+    hoc: <ExampleHOC />, // isLoading={true}
+    event: <ExampleEvents />,
+  };
+  const handleTab = (tab = "example") => {
+    setTabs(tab);
+  };
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="tabs">
+        <Button
+          className={`${tabs === "ref" ? "active" : ""}`}
+          onClick={() => handleTab("ref")}
+        >
+          Ref
+        </Button>
+        <Button
+          className={`${tabs === "hoc" ? "active" : ""}`}
+          onClick={() => handleTab("hoc")}
+        >
+          HOC
+        </Button>
+        <Button
+          className={`${tabs === "event" ? "active" : ""}`}
+          onClick={() => handleTab("event")}
+        >
+          Event
+        </Button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div>{Show[tabs]}</div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

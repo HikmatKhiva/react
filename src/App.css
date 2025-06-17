@@ -40,3 +40,29 @@
 .read-the-docs {
   color: #888;
 }
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ref-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.input-ref,
+.event-input {
+  padding: 8px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid #ccc;
+}
+.input-ref:focus {
+  border-color: #0077ff;
+}
+.event-container {
+  margin-top: 30px;
+}

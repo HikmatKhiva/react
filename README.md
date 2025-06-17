@@ -1,59 +1,59 @@
-# React darsi
-# ! React js 19.1.0 versiyasi ishlatildi.
-## Birinchi react js da code yozishdan oldin biz muhitni sozlashimiz kerak.
+## React 4-dars
+- Ref
+- Events
+- Hight Order Components
 
-- IDE sozlash 
-- Node JS ni o'rnatish
-- CMD bilan ishlash ko'nikmalari kerak bo'ladi 
+### React-da "ref" (reference) — bu DOM elementlari yoki React komponentlariga to'g'ridan-to'g'ri murojaat qilish imkonini beruvchi usuldir. Reflar yordamida siz React komponenti ichidagi DOM elementini yoki boshqa komponent instance-ni olish va boshqarish imkoniyatiga ega bo'lasiz.
+### Ref va state farqi: State o'zgarganda komponent qayta render qilinadi, ref esa faqat qiymatni saqlaydi va o'zgarganda qayta render qilinmaydi. Shuning uchun ref ko'proq komponentning ichki holatini yoki DOM elementini boshqarishda ishlatiladi.
 
+```
+import { useRef } from "react";
+const ExampleRef = () => {
+  const inputRef = useRef();
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
+  return (
+    <div className="ref-container">
+      <input className="input-ref" ref={inputRef} type="text" />
+      <button onClick={focusInput}>Focus Input</button>
+    </div>
+  );
+};
+export default ExampleRef;
+```
+### React-da eventlar — bu foydalanuvchi bilan o'zaro ta'sirlarni (masalan, klik qilish, kursorni olib o'tish, forma elementlarini to'ldirish) boshqarish uchun ishlatiladigan mexanizmdir. React event handling tizimi DOM event handling-ga o'xshash, lekin ba'zi sintaksis farqlari mavjud.
+### Event Handler (Voqea boshqaruvchisi) — bu foydalanuvchi harakati yuzaga kelganda chaqiriladigan funksiya. Masalan, tugmani bosganda ishlaydigan funksiya.
+### Event Handler qo'shish: JSX elementga onClick, onChange, onSubmit kabi atributlar orqali event handler funksiyasini uzatamiz. Masalan:
+```
+function handleClick() {
+  alert('You clicked me!');
+}
+<button onClick={handleClick}>Click me</button>
+```
+### React-da Higher-Order Components (HOC) — bu komponentlarni qayta ishlatish va ularning funksionalligini kengaytirish uchun ishlatiladigan dizayn patternidir. HOC — bu oddiygina bir komponentni qabul qilib, uni yangi, kengaytirilgan komponentga aylantiruvchi funksiyadir.
 
+- Qayta ishlatish (Reusability): Bir nechta komponentlarda takrorlanuvchi mantiqni HOC ichida jamlab, kodni takrorlamaslik.
 
-### IDE lar ulardan birini kompyuteringizga o'rnating 
-- VS code [havola](https://code.visualstudio.com/) 
-- Web Storm  [havola](https://www.jetbrains.com/)
-- Sublime Text [havola](https://www.sublimetext.com/)
+- Kod ajratish (Separation of concerns): Murakkab xatti-harakatlarni alohida joyga olib, komponentlarni soddalashtirish.
 
-### Node js yuklab oling [havola](https://nodejs.org/en/download)
-o'rnatish bo'yicha video qo'lnama [havola](https://www.youtube.com/watch?v=dlNT6I33mOc)
+- Cross-cutting concerns: Masalan, autentifikatsiya, xatoliklarni boshqarish, ma’lumot yuklash kabi umumiy funksiyalarni bir joyda boshqarish.
+### Qachon HOC ishlatiladi?
+- Bir nechta komponentlarga o‘xshash, lekin to‘liq bir xil bo‘lmagan logikani ulash kerak bo‘lsa.
 
-
-### CMD bilan ishlash uchun muhim buyruqlar.
-`dir
-` bu orqali siz qayerda turganingni aniqlab olishingiz mumkin.
-
-`cd /manzil
-` bu orqali bir papkadan boshqa papka kirish mumkin.
-
-`cd ..
-` bu orqali orqali siz papkadan chiqishingiz mumkin.
-
-`node -v
-` bu buyruq orqali siz kompyuteringizga nodejs o'rnatilgan yoki yo'qligini aniqlashingiz mumkin. 
-
-`npm -v
-` bu buyruq orqali siz kompyuteringizga npm package  o'rnatilgan yoki yo'qligini aniqlashingiz mumkin.
-
-# Agar sizda shu joygacha muamo bo'lmasa keyingi qismiga o'tishingiz mumkin!
-
-### Endi React js haqida gaplashamiz bu foydalanuvchi interfeyslarini yaratish uchun mo‘ljallangan ochiq manbali JavaScript kutubxonasi 2013 yil Facebook company tomonidan omaga taqdim etilgan. [React tarixi bo'yicha documetatsiya](https://youtu.be/8pDqJVdNa44?si=rs9tpqF9ekrYhr4O)
-### React komponentlarga asoslangan arxitekturaga ega bo‘lib, bu dasturchilarga qayta foydalanish mumkin bo‘lgan, mustaqil UI komponentlarini yaratish imkonini beradi. Bu yondashuv kodni modulli va barqaror qiladi hamda ishlab chiqish jarayonini tezlashtiradi. React yordamida bir sahifali veb-saytlar va mobil ilovalar ishlab chiqish mumkin.
-
-### React ni kompyuterga sozlash buning uchun quyidagi bosqichlar bilan ishlaymiz
-- `npm create @vitelatest` bu buyruq orqali react muhiti o'rnatamiz.
-![start](images/01.png)
-loyihamizga nom beramiz yoki ./ enter qilib keyingi bosqichga o'tamiz.
-
-![next step](images/02.png)
-bu joydan reactni tanlaymiz!
-
-![next step](images/03.png)
-o'zimizga kerak bo'lagini  tanlaymiz.
-![finish](images/04.png)
-
-### bizga faylar kelganida so'ng
-- `npm i` yoki `npm install` buyrug'ini terminalga kiritamiz. ish yakunlangandan so'ng
-- `npm run dev` orqali react loyihamizni ishga tushuramiz!
-- `http://localhost:5173/` web browserda shu manzilga kiramiz. 
-
-![finish](images/finish.png)
-### agar sizda ham shu oynani ochgan bo'lsa barcha ishni to'g'ri bajardingiz.
+- Masalan, ma’lumotlarni yuklash paytida yuklanish indikatorini ko‘rsatish, foydalanuvchi autentifikatsiyasi, xatoliklarni tutish
+```
+function withLoading(Component) {
+  return function WithLoadingComponent(props) {
+    if (props.isLoading) {
+      return <div>Loading...</div>;
+    }
+    return (
+      <>
+        <Component {...props} />
+      </>
+    );
+  };
+}
+export default withLoading;
+```
